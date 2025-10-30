@@ -61,13 +61,6 @@ export default function HomePage() {
 							{Array.from({ length: 30 }).map((_, i) => (
 								<div
 									key={i}
-									className={
-										i % 7 === 0
-											? "h-3 w-3 bg-primary"
-											: i % 5 === 0
-											? "h-3 w-3 bg-accent"
-											: "h-3 w-3 bg-muted"
-									}
 									style={{ animationDelay: `${(i % 10) * 60}ms` }}
 									className={
 										(i % 7 === 0 ? "h-3 w-3 bg-primary" : i % 5 === 0 ? "h-3 w-3 bg-accent" : "h-3 w-3 bg-muted") + " animate-pixel"
