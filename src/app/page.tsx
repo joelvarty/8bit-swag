@@ -52,11 +52,11 @@ export default function HomePage() {
 				</Card>
 
 				{/* Chart 3: Maintainability Clarity (donut-like grid) */}
-				<Card>
+				<Card className="h-full">
 					<CardHeader>
 						<CardTitle>Maintainability Clarity</CardTitle>
 					</CardHeader>
-					<CardContent>
+					<CardContent className="mt-auto">
 						<div className="grid grid-cols-6 gap-1">
 							{Array.from({ length: 30 }).map((_, i) => (
 								<div

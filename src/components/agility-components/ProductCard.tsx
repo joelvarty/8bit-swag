@@ -20,7 +20,7 @@ export function ProductCard({ product }: { product: Product }) {
 							<AsciiArt art={product.asciiArt} className="p-2" baseFontPx={10} baseLineHeightPx={10} />
 						</div>
 					) : null}
-					<div className="mb-1 text-sm text-gray-900">{product.title}</div>
+					<div className="mb-1 text-sm text-green-400">{product.title}</div>
 					{product.priceFrom != null ? (
 						<Badge variant="secondary">${product.priceFrom.toFixed(2)}</Badge>
 					) : null}
