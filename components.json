@@ -1,0 +1,99 @@
+{
+	"models": [
+		{
+			"id": -1,
+			"displayName": "Product Category",
+			"referenceName": "productCategory",
+			"description": "Categories for products",
+			"fields": [
+				{ "type": "TextField", "name": "title", "label": "Title", "required": true },
+				{ "type": "TextField", "name": "slug", "label": "Slug", "required": true, "unique": true }
+			]
+		},
+		{
+			"id": -1,
+			"displayName": "Size",
+			"referenceName": "size",
+			"description": "Sizes",
+			"fields": [
+				{ "type": "TextField", "name": "label", "label": "Label", "required": true },
+				{ "type": "TextField", "name": "value", "label": "Value", "required": true },
+				{ "type": "NumberField", "name": "order", "label": "Order", "defaultValue": 0 }
+			]
+		},
+		{
+			"id": -1,
+			"displayName": "Product Variant",
+			"referenceName": "productVariant",
+			"description": "Variant for a product",
+			"fields": [
+				{ "type": "TextField", "name": "sku", "label": "SKU", "required": true, "unique": true },
+				{ "type": "NumberField", "name": "price", "label": "Price", "required": true },
+				{ "type": "LinkedContentDropdown", "name": "sizeRef", "label": "Size", "contentModel": "size", "renderAs": "dropdown", "saveValueToField": "sizeRef_value", "displayColumn": "label", "saveTextToField": "sizeRef_text" },
+				{ "type": "ImageField", "name": "image", "label": "Image" },
+				{ "type": "NumberField", "name": "stock", "label": "Stock" }
+			]
+		},
+		{
+			"id": -1,
+			"displayName": "Product",
+			"referenceName": "product",
+			"description": "Sellable product",
+			"fields": [
+				{ "type": "TextField", "name": "title", "label": "Title", "required": true },
+				{ "type": "TextField", "name": "slug", "label": "Slug", "required": true, "unique": true },
+				{ "type": "TextAreaField", "name": "description", "label": "Description" },
+				{ "type": "NumberField", "name": "priceFrom", "label": "Price From" },
+				{ "type": "LinkedContentCheckboxes", "name": "categories", "label": "Categories", "contentModel": "productCategory", "renderAs": "checkboxes", "saveValueToField": "categories", "displayColumn": "title", "saveTextToField": "categories_text" },
+				{ "type": "LinkedContentCheckboxes", "name": "sizes", "label": "Sizes", "contentModel": "size", "renderAs": "checkboxes", "saveValueToField": "sizes", "displayColumn": "label", "saveTextToField": "sizes_text" },
+				{ "type": "ImageField", "name": "images", "label": "Images" },
+				{ "type": "LinkedContentNestedGrid", "name": "variants", "label": "Variants", "contentModel": "productVariant", "renderAs": "grid", "isNested": true, "columns": "sku,price,sizeRef_text" }
+			]
+		}
+	],
+	"containers": [
+		{
+			"ID": -1,
+			"modelID": -1,
+			"referenceName": "products",
+			"displayName": "Products",
+			"modelTypeID": 1,
+			"isShared": true,
+			"isDynamicPageList": true
+		},
+		{
+			"ID": -1,
+			"modelID": -1,
+			"referenceName": "productCategories",
+			"displayName": "Product Categories",
+			"modelTypeID": 1,
+			"isShared": true,
+			"isDynamicPageList": false
+		},
+		{
+			"ID": -1,
+			"modelID": -1,
+			"referenceName": "sizes",
+			"displayName": "Sizes",
+			"modelTypeID": 1,
+			"isShared": true,
+			"isDynamicPageList": false
+		}
+	],
+	"components": [
+		{
+			"id": -1,
+			"displayName": "Product Listing",
+			"referenceName": "ProductListing",
+			"description": "Grid of products with simple filters",
+			"fields": []
+		},
+		{
+			"id": -1,
+			"displayName": "Product Details",
+			"referenceName": "ProductDetails",
+			"description": "Details of a single product",
+			"fields": []
+		}
+	]
+}
