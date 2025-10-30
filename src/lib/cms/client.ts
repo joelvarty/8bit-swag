@@ -1,8 +1,8 @@
-import { getAgilitySDK } from '@agility/nextjs'
+import { getApi } from '@agility/content-fetch'
 import { env } from '@/lib/env'
 
 export function getAgility() {
-	return getAgilitySDK({
+	return getApi({
 		guid: env.AGILITY_GUID,
 		apiKey: env.AGILITY_API_FETCH_KEY,
 		isPreview: false,
@@ -10,7 +10,7 @@ export function getAgility() {
 }
 
 export function getAgilityPreview() {
-	return getAgilitySDK({
+	return getApi({
 		guid: env.AGILITY_GUID,
 		apiKey: env.AGILITY_API_PREVIEW_KEY,
 		isPreview: true,

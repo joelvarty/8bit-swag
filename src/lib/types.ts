@@ -12,6 +12,7 @@ export type Product = {
 	title: string
 	slug: string
 	description?: string
+	asciiArt?: string
 	priceFrom?: number
 	categories?: string[]
 	sizes?: string[]

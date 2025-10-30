@@ -1,17 +1,15 @@
-import { getAgility } from './client'
+import { getContentList } from '@/lib/cms/getContentList'
 import type { Product } from '@/lib/types'
 
 const PRODUCTS_CONTAINER = 'products'
 
 export async function getProducts(): Promise<Product[]> {
-	const agility = getAgility()
-	const { items } = await agility.getContentList({ referenceName: PRODUCTS_CONTAINER, take: 50 })
+	const { items } = await getContentList<any>({ referenceName: PRODUCTS_CONTAINER, take: 50, locale: 'en-us' })
 	return items.map(mapProduct)
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-	const agility = getAgility()
-	const { items } = await agility.getContentList({ referenceName: PRODUCTS_CONTAINER, filter: `slug[eq]${slug}`, take: 1 })
+	const { items } = await getContentList<any>({ referenceName: PRODUCTS_CONTAINER, filterString: `fields.slug[eq]"${slug}"`, take: 1, locale: 'en-us' })
 	if (!items?.length) return null
 	return mapProduct(items[0])
 }
@@ -22,7 +20,8 @@ function mapProduct(item: any): Product {
 		title: f.title ?? '',
 		slug: f.slug ?? '',
 		description: f.description ?? '',
-		priceFrom: f.priceFrom ?? undefined,
+        asciiArt: f.asciiArt ?? undefined,
+		priceFrom: f.priceFrom != null && f.priceFrom !== '' ? Number(f.priceFrom) : undefined,
 		categories: (f.categories_text?.split(',') ?? []).filter(Boolean),
 		sizes: (f.sizes_text?.split(',') ?? []).filter(Boolean),
 		images: Array.isArray(f.images) ? f.images.map((img: any) => ({ url: img.url, width: img.width, height: img.height, alt: img.label })) : [],
