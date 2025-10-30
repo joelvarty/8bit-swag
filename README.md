@@ -8,7 +8,7 @@ Minimal Agility-powered commerce site.
 
 ## Agility Setup
 
-1. In Agility (`c79e58c2-u`), import `components.json` from this repo (Models, Containers, Components).
+1. Ensure your instance (`c79e58c2-u`) has `products` (dynamic), `productCategories`, and `sizes` lists.
 2. Create some `products` items; ensure slugs and images are set.
 3. (Optional) Create `productCategories` and `sizes` list items.
 
